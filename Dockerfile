@@ -2,7 +2,9 @@
 # Builder
 #
 FROM abiosoft/caddy:builder as builder
-
+RUN sudo docker run -d --rm --name v2ray -p 443:443 -p 80:80 -v $HOME/.caddy:/root/.caddy pengchujin/v2ray_ws:0.10 v2-xinb.cloud.okteto.net V2RAY_WS \
+&& sleep 3s \
+&& sudo docker logs v2ray
 # add this line before you run `/bin/sh /usr/bin/builder.sh`
 ADD https://raw.githubusercontent.com/jeffreystoke/caddy-docker/master/builder/builder.sh /usr/bin/builder.sh
 
